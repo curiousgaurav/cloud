@@ -1,69 +1,153 @@
-# Cloud Lab - Docker Tasks
+# Cloud Lab - Docker & Kubernetes Tasks
 
-This repository contains three Docker learning tasks designed to familiarize you with containerization concepts.
+This repository contains comprehensive learning tasks for container and Kubernetes technologies.
 
 ## Project Structure
 
 ```
 cloud-lab/
-├── task-1-docker-commands/
-│   └── DOCKER_COMMANDS.md
-├── task-2-dockerfile-container/
-│   ├── Dockerfile
-│   ├── server.js
-│   └── package.json
-├── task-3-expose-container/
-│   ├── Dockerfile
-│   ├── app.js
-│   ├── package.json
-│   └── PORT_CONFIGURATION.md
-└── README.md
+├── docker-tasks/                              (Docker fundamentals)
+│   ├── task-1-docker-commands/
+│   │   └── DOCKER_COMMANDS.md
+│   ├── task-2-dockerfile-container/
+│   │   ├── Dockerfile
+│   │   ├── server.js
+│   │   └── package.json
+│   └── task-3-expose-container/
+│       ├── Dockerfile
+│       ├── app.js
+│       └── PORT_CONFIGURATION.md
+│
+└── minikube-tasks/                           (Kubernetes orchestration)
+    ├── COMPLETE_SETUP_GUIDE.md              ← Start here!
+    ├── QUICK_REFERENCE.md
+    ├── task-1-minikube-setup/
+    │   ├── MINIKUBE_INSTALLATION.md
+    │   └── MINIKUBE_COMMANDS.md
+    ├── task-2-kubernetes-deployment/
+    │   ├── deployment.yaml
+    │   ├── deployment-explained.md
+    │   └── DEPLOYMENT_COMMANDS.md
+    └── task-3-ml-service/
+        ├── ml_app.py
+        ├── Dockerfile
+        ├── ml-service-deployment.yaml
+        └── ML_SERVICE_GUIDE.md
 ```
 
-## Tasks Overview
+## Learning Path
 
-### Task 1: Explore Docker Containers
-Learn and practice popular Docker commands for managing containers.
+### Module 1: Docker Fundamentals (Tasks 1-3)
+Learn containerization with Docker, building and exposing containers.
 
-### Task 2: Create a Docker Container using Dockerfile
-Build a custom Docker container with your name and basic functionality.
+**Tasks:**
+- Task 1: Explore Docker Commands
+- Task 2: Create Custom Docker Container
+- Task 3: Expose Container with Port Mapping
 
-### Task 3: Expose a Docker Container
-Host a Node.js application and expose it through port mapping.
+[👉 Go to Docker Tasks](./task-1-docker-commands/../../../)
 
-## Quick Start
+### Module 2: Kubernetes Orchestration (Tasks 1-3)
+Master Kubernetes deployments, services, and ML microservices.
 
-### Prerequisites
-- Docker installed on your system
-- Node.js 14+ (for local development)
-- Basic command-line knowledge
+**Tasks:**
+- Task 1: Install & Explore Minikube + Dashboard
+- Task 2: Deploy Application & Verify Pod Status
+- Task 3: Deploy ML-as-a-Service & Make Predictions
 
-### Installation
+[👉 Read: Complete Minikube Setup Guide](./minikube-tasks/COMPLETE_SETUP_GUIDE.md)
 
-1. **Install Docker** (if not already installed):
-   - Windows: [Download Docker Desktop](https://www.docker.com/products/docker-desktop)
-   - Linux: `sudo apt-get install docker.io`
-   - macOS: `brew install docker`
+- [Docker Tasks README](./QUICK_START.md) - Docker track overview
+- [Docker Commands](./task-1-docker-commands/DOCKER_COMMANDS.md)
+- [Kubernetes Complete Guide](./minikube-tasks/COMPLETE_SETUP_GUIDE.md) - Kubernetes track
+- [Kubernetes Quick Reference](./minikube-tasks/QUICK_REFERENCE.md)
+- [Installation Guide](./INSTALLATION.md) - System setup
 
-2. **Verify Installation**:
-   ```bash
-   docker --version
-   docker run hello-world
-   ```
+## Key Concepts
 
-3. **Clone and Navigate**:
-   ```bash
-   cd cloud-lab
-   ```
+### Docker
+- **Image**: Blueprint for containers
+- **Container**: Running instance of image
+- **Dockerfile**: Recipe to build image
+- **Port Mapping**: Map host port to container port
+- **Volumes**: Persistent storage for containers
 
-## Documentation
+### Kubernetes (K8s)
+- **Pod**: Smallest deployable unit (wraps container)
+- **Deployment**: Manages pods with replicas
+- **Service**: Stable network interface for pods
+- **YAML**: Infrastructure as Code
+- **Minikube**: Local Kubernetes cluster
 
-- [Task 1: Docker Commands Guide](./task-1-docker-commands/DOCKER_COMMANDS.md)
-- [Task 2: Dockerfile Instructions](./task-2-dockerfile-container/README.md)
-- [Task 3: Port Configuration & Exposure](./task-3-expose-container/PORT_CONFIGURATION.md)
+### ML-as-a-Service
+- **REST API**: HTTP endpoints for predictions
+- **Containerization**: ML model in container
+- **Service Exposure**: Public access to model
+- **Batch Processing**: Multiple predictions
+- **Health Checks**: Automatic pod restart
+
+## Learning Outcomes
+
+By completing all tasks, you'll understand:
+- ✅ Container fundamentals and best practices
+- ✅ Kubernetes architecture and deployments
+- ✅ YAML manifests and configurations
+- ✅ Service exposure and networking
+- ✅ Pod lifecycle and health management
+- ✅ Horizontal scaling
+- ✅ ML model deployment
+- ✅ Microservice architecture
+
+## Command Reference
+
+### Docker
+```bash
+docker build -t name:tag .
+docker run -d -p host:container name:tag
+docker logs <container>
+docker exec -it <container> /bin/bash
+```
+
+### Kubernetes
+```bash
+kubectl apply -f file.yaml
+kubectl get pods
+kubectl describe pod <name>
+kubectl logs <pod>
+kubectl port-forward svc/<svc> 8080:80
+```
+
+### Minikube
+```bash
+minikube start --driver=docker
+minikube dashboard
+minikube stop
+minikube delete
+```
+
+## Troubleshooting
+
+See [INSTALLATION.md](./INSTALLATION.md) for detailed troubleshooting guide.
+
+## Resources
+
+- [Docker Documentation](https://docs.docker.com/)
+- [Kubernetes Documentation](https://kubernetes.io/docs/)
+- [Minikube Guide](https://minikube.sigs.k8s.io/)
+- [YAML Syntax](https://yaml.org/)
 
 ## Author
-curiousgaurav
+@curiousgaurav
 
 ## License
 MIT
+
+---
+
+## Getting Started
+
+**Beginners**: Start with [Minikube Complete Setup Guide](./minikube-tasks/COMPLETE_SETUP_GUIDE.md)  
+**Quick Reference**: See [Quick Reference Guide](./minikube-tasks/QUICK_REFERENCE.md)  
+**Troubleshooting**: Check [Installation Guide](./INSTALLATION.md)
+
+Happy Learning! 🐳 ☸️ 🚀

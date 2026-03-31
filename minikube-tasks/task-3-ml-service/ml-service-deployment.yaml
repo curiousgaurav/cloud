@@ -1,0 +1,100 @@
+# ML Microservice Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-service-deployment
+  namespace: default
+  labels:
+    app: ml-service
+    tier: backend
+    component: ml-model
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: ml-service
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: ml-service
+        tier: backend
+        component: ml-model
+      annotations:
+        description: "ML-as-a-Service: Iris Flower Classification"
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: ml-service-container
+        image: curiousgaurav-ml-service:1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 5000
+          protocol: TCP
+        env:
+        - name: MODEL_NAME
+          value: "curiousgaurav-ml-service"
+        - name: VERSION
+          value: "1.0"
+        - name: ENVIRONMENT
+          value: "production"
+        - name: PORT
+          value: "5000"
+        - name: HOST
+          value: "0.0.0.0"
+        resources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 1000m
+            memory: 1Gi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 1
+          failureThreshold: 3
+        volumeMounts:
+        - name: ml-config
+          mountPath: /app/config
+      volumes:
+      - name: ml-config
+        emptyDir: {}
+---
+# ML Service Exposure
+apiVersion: v1
+kind: Service
+metadata:
+  name: ml-service
+  namespace: default
+  labels:
+    app: ml-service
+spec:
+  type: NodePort
+  selector:
+    app: ml-service
+    tier: backend
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 5000
+    nodePort: 30500
+    name: http
+  sessionAffinity: None
