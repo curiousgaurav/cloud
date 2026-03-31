@@ -1,0 +1,17 @@
+{
+  "name": "curiousgaurav-exposed-app",
+  "version": "1.0.0",
+  "description": "Docker container with exposed ports - Node.js web application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "keywords": ["docker", "nodejs", "exposed-ports", "container"],
+  "author": "curiousgaurav",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "body-parser": "^1.20.0"
+  }
+}

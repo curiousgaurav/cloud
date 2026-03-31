@@ -1,0 +1,47 @@
+# Docker Node Modules (don't commit build artifacts)
+node_modules/
+npm-debug.log
+yarn-error.log
+.npm-cache
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Docker artifacts
+.docker/
+.dockerignore
+
+# Build outputs
+dist/
+build/
+*.log
+
+# Node files
+package-lock.json.orig
+tmp/
+temp/
+
+# OS Files
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Test coverage
+coverage/
+.nyc_output
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
